@@ -1,0 +1,49 @@
+{
+  "name": "generator-prelude",
+  "version": "0.0.1",
+  "description": "Prelude is an yeoman generator that generates a Rails 5 API-only application with React, Redux, React Redux, React Router and some other stuff all tied nicely by webpack for a webpack + babel all-the-way workflow and a small express server/app to serve an index.html file.",
+  "homepage": "https://github.com/mateusmedeiros/generator-prelude",
+  "author": {
+    "name": "Mateus \"Doodad\" Medeiros",
+    "email": "mateus.medeiros@ecostage.com.br",
+    "url": "https://github.com/mateusmedeiros"
+  },
+  "files": [
+    "dist/app"
+  ],
+  "main": "dist/app/index.js",
+  "keywords": [
+    "react",
+    "redux",
+    "react-router",
+    "react-redux",
+    "webpack",
+    "sass",
+    "rails",
+    "babel",
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "ejs": "^2.5.1",
+    "yeoman-generator": "^0.23.0",
+    "yosay": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-1": "^6.13.0",
+    "eslint": "^3.1.1",
+    "eslint-plugin-react": "^6.0.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^2.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-nsp": "^2.1.0"
+  },
+  "repository": "mateusmedeiros/generator-prelude",
+  "scripts": {
+    "prepublish": "gulp"
+  },
+  "license": "MIT"
+}

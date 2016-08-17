@@ -1,0 +1,9 @@
+/.bundle
+/log
+/node_modules
+/tmp
+
+.byebug_history
+
+# This is the directory where webpack puts generated assets and bundles.
+/public/assets

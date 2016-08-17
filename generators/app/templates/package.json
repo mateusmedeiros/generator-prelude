@@ -1,0 +1,43 @@
+{
+  "name": "<%= _.kebabCase(appName) %>",
+  "dependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-1": "^6.5.0",
+    "connect-history-api-fallback": "^1.2.0",
+    "css-loader": "^0.23.1",
+    "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "flat": "^2.0.1",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.8.0",
+    "proxy-middleware": "^0.15.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "redux": "^3.5.2",
+    "sass-loader": "^4.0.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-merge": "^0.14.0",
+    "whatwg-fetch": "^1.0.0",
+    "yaml-loader": "^0.4.0"
+  },
+  "devDependencies": {
+    "foreman": "^1.4.1",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "yo": "^1.8.4"
+  },
+  "scripts": {
+    "heroku-postbuild": "webpack --config config/webpack.js",
+    "setup": "yo prelude:setup",
+    "start": "nf start -j Procfile.dev"
+  }
+}

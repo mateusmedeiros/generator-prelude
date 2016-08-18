@@ -23,6 +23,14 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
+    this.spawnCommand('git', [ 'init' ])
+      .on('exit', () => {
+        this.spawnCommand('git', [ 'add', '.' ])
+          .on('exit', () => {
+            this.spawnCommand('git', [ 'commit', '-m', 'Initial commit' ]);
+          });
+      });
+
     this.npmInstall();
 
     this.spawnCommand('gem', [ 'install', 'bundler', '--conservative' ])

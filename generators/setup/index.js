@@ -23,7 +23,8 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function () {
-    // this.npmInstall();
+    this.npmInstall();
+
     this.spawnCommand('gem', [ 'install', 'bundler', '--conservative' ])
       .on('exit', (code) => {
         if (!code) {

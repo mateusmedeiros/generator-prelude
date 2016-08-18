@@ -60,6 +60,15 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function() {
-    this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
+    this.spawnCommand('git', [ 'init' ])
+      .on('exit', () => {
+        this.spawnCommand('git', [ 'add', '.' ])
+          .on('exit', () => {
+            this.spawnCommand('git', [ 'commit', '-m', 'Initial commit' ])
+              .on('exit', () => {
+                this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
+              });
+          });
+      });
   }
 });

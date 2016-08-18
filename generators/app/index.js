@@ -56,6 +56,9 @@ module.exports = yeoman.Base.extend({
     var to = this.destinationPath('.');
 
     this.fs.copyTpl(from, to, _.merge(this.templateVars, { _: _ }));
+
+    // See https://github.com/npm/npm/issues/7252 for why this is needed
+    this.fs.move(this.destinationPath('_gitignore'), this.destinationPath('.gitignore'));
     this.config.save();
   },
 

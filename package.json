@@ -45,8 +45,10 @@
   },
   "repository": "mateusmedeiros/generator-prelude",
   "scripts": {
+    "link": "npm run prepublish && sudo npm link",
     "prepublish": "cp -R generators generatorsSrc && gulp publish",
-    "postpublish": "rm -Rf generators && mv generatorsSrc generators"
+    "postpublish": "rm -Rf generators && mv generatorsSrc generators",
+    "unlink": "npm run postpublish && sudo npm unlink"
   },
   "license": "MIT"
 }

@@ -25,7 +25,7 @@ module.exports = yeoman.Base.extend({
   install: function () {
     this.npmInstall();
 
-    this.spawnCommand('gem', [ 'install', 'bundler', '--conservative' ])
+    return this.spawnCommand('gem', [ 'install', 'bundler', '--conservative' ])
       .on('exit', (code) => {
         if (!code) {
           this.spawnCommand('ruby', [ this.destinationPath('bin', 'bundle'), 'install' ])

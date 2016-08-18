@@ -7,7 +7,7 @@ var commonConfig = {
     'whatwg-fetch',
     'babel-polyfill',
     path.join(__dirname, '..', 'app', 'client', 'js', 'index.js'),
-    path.join(__dirname, '..', 'app', 'client', 'css', 'index.js')
+    path.join(__dirname, '..', 'app', 'client', 'css', 'index.css')
   ],
 
   output: {

@@ -1,2 +1,2 @@
 server: node express.js
-client: rails s
+client: rails s -p 3000

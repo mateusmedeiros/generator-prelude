@@ -5,7 +5,7 @@ var history = require('connect-history-api-fallback');
 var serveStatic = require('express').static;
 var mainServer = require('express')();
 
-var port = process.env.PORT || 8080;
+var port = process.env.NODE_ENV == 'production' ? process.env.PORT : 8080;
 
 mainServer.use('/api', proxy(url.parse('http://localhost:3000')))
 mainServer.use(history());

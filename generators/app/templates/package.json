@@ -33,7 +33,8 @@
     "react-hot-loader": "^1.3.0",
     "style-loader": "^0.13.1",
     "webpack-dev-server": "^1.14.1",
-    "yo": "^1.8.4"
+    "yo": "^1.8.4",
+    "generator-prelude": "<%= generatorVersion %>"
   },
   "scripts": {
     "heroku-postbuild": "webpack --config config/webpack.js",

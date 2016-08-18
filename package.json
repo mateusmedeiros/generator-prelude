@@ -1,6 +1,6 @@
 {
   "name": "generator-prelude",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Prelude is an yeoman generator that generates a Rails 5 API-only application with React, Redux, React Redux, React Router and some other stuff all tied nicely by webpack for a webpack + babel all-the-way workflow and a small express server/app to serve an index.html file.",
   "homepage": "https://github.com/mateusmedeiros/generator-prelude",
   "author": {
@@ -9,9 +9,10 @@
     "url": "https://github.com/mateusmedeiros"
   },
   "files": [
-    "dist/app"
+    "generators/app",
+    "generators/setup"
   ],
-  "main": "dist/app/index.js",
+  "main": "generators/app/index.js",
   "keywords": [
     "react",
     "redux",
@@ -39,11 +40,13 @@
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^2.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-filter": "^4.0.0",
     "gulp-nsp": "^2.1.0"
   },
   "repository": "mateusmedeiros/generator-prelude",
   "scripts": {
-    "prepublish": "gulp"
+    "prepublish": "cp -R generators generatorsSrc && gulp publish",
+    "postpublish": "rm -Rf generators && mv generatorsSrc generators"
   },
   "license": "MIT"
 }

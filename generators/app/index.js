@@ -43,6 +43,8 @@ module.exports = yeoman.Base.extend({
         "gem 'rack-cors'"
       ).sortBy().join('\n'),
 
+      generatorVersion: this.fs.readJSON(require.resolve('../../package.json')).version,
+
       test_gems: _(this.testGems).concat(
         "gem 'byebug', platform: :mri"
       ).sortBy().join('\n  ')

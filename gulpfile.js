@@ -1,17 +1,22 @@
 'use strict';
 var path = require('path');
 var gulp = require('gulp');
+var filter = require('gulp-filter');
 var babel = require('gulp-babel');
 var eslint = require('gulp-eslint');
 var excludeGitignore = require('gulp-exclude-gitignore');
 var nsp = require('gulp-nsp');
 
-gulp.task('build', function() {
-  return gulp.src(['generators/**/*.js', '!generators/app/templates/**/*.js'])
+gulp.task('publish', function() {
+  var f = filter(['generatorsSrc/**/*.js', '!generatorsSrc/app/templates/**/*.js'], { restore: true });
+
+  return gulp.src('generatorsSrc/**/*.js')
+    .pipe(f)
     .pipe(babel({
       presets: ['es2015', 'stage-1']          
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(f.restore)
+    .pipe(gulp.dest('generators'));
 });
 
 gulp.task('eslint', function() {
@@ -26,4 +31,4 @@ gulp.task('nsp', function(cb) {
   nsp({package: path.resolve('package.json')}, cb);
 });
 
-gulp.task('default', ['eslint', 'nsp', 'build']);
+gulp.task('default', ['eslint', 'nsp']);

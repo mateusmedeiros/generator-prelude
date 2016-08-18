@@ -8,7 +8,7 @@ var excludeGitignore = require('gulp-exclude-gitignore');
 var nsp = require('gulp-nsp');
 
 gulp.task('publish', function() {
-  var f = filter(['generatorsSrc/**/*.js', '!generatorsSrc/app/templates/**/*.js'], { restore: true });
+  var f = filter(['generatorsSrc/**/*.js', '!generatorsSrc/**/*/templates/**/*.js'], { restore: true });
 
   return gulp.src('generatorsSrc/**/*.js')
     .pipe(f)

@@ -35,6 +35,8 @@ MIT © [Mateus &#34;Doodad&#34; Medeiros](https://github.com/mateusmedeiros)
    * Option to specify origin
    * Choose to add or not a default .eslintrc.yml
    * Choose to edit the default .eslintrc.yml
+   * Download or link in some way the .rubocop.yml to the one from ecostage/guides
+   * Choose to add or not the .rubocop.yml
 
 [npm-image]: https://badge.fury.io/js/generator-prelude.svg
 [npm-url]: https://npmjs.org/package/generator-prelude

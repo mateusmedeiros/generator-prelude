@@ -57,6 +57,12 @@ module.exports = yeoman.Base.extend({
 
     this.fs.copyTpl(from, to, _.merge(this.templateVars, { _: _ }));
 
+    // copyTpl seems to mess with binary files (which is understandable)
+    this.fs.copy(
+      this.templatePath('app/client/assets/foo-asset.png'),
+      this.destinationPath('app/client/assets/foo-asset.png'),
+    );
+
     // See https://github.com/npm/npm/issues/7252 for why this is needed
     this.fs.move(this.destinationPath('_gitignore'), this.destinationPath('.gitignore'));
     this.config.save();

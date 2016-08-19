@@ -33,6 +33,8 @@ MIT © [Mateus &#34;Doodad&#34; Medeiros](https://github.com/mateusmedeiros)
    * Edit database.yml
    * Licenses
    * Option to specify origin
+   * Choose to add or not a default .eslintrc.yml
+   * Choose to edit the default .eslintrc.yml
 
 [npm-image]: https://badge.fury.io/js/generator-prelude.svg
 [npm-url]: https://npmjs.org/package/generator-prelude

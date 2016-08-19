@@ -1,0 +1,36 @@
+env:
+  browser: true
+  node: true
+  es6: true
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+globals:
+  If: false
+  Else: false
+  Choose: false
+  When: false
+parser: 'babel-eslint'
+parserOptions:
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+    jsx: true
+  sourceType: module
+plugins:
+  - react
+rules:
+  strict: 0
+  indent:
+    - 2
+    - 2
+    - SwitchCase: 1
+  linebreak-style:
+    - 2
+    - unix
+  quotes:
+    - 2
+    - single
+  semi:
+    - 2
+    - always
+  react/prop-types: 0

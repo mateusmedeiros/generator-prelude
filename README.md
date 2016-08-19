@@ -3,7 +3,7 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-prelude using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-prelude using [npm](https://www.npmjs.com/) (assuming you have [node.js](https://nodejs.org/) installed).
 
 ```bash
 npm install -g yo
@@ -40,5 +40,5 @@ MIT © [Mateus &#34;Doodad&#34; Medeiros](https://github.com/mateusmedeiros)
 
 [npm-image]: https://badge.fury.io/js/generator-prelude.svg
 [npm-url]: https://npmjs.org/package/generator-prelude
-[daviddm-image]: https://david-dm.org/ecostage/generator-prelude.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/ecostage/generator-prelude
+[daviddm-image]: https://david-dm.org/mateusmedeiros/generator-prelude.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/mateusmedeiros/generator-prelude

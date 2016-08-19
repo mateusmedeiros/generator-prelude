@@ -1,22 +1,30 @@
+// This needs to go before everything else
+import 'react-hot-loader/patch';
+
 import { en, pt_BR } from 'locales';
 
 import React from 'react';
+import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
-import { Router, useRouterHistory } from 'react-router';
-import { createHistory } from 'history';
-import { Provider } from 'react-redux';
+import App from './App';
 
-import store from 'redux/store';
-import routes from 'config/routes';
+import getStore from 'store';
 
-const browserHistory = useRouterHistory(createHistory)({
-  basename: '/app'
-});
+const store = getStore();
 
 render((
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      { routes }
-    </Router>
-  </Provider>
+  <AppContainer>
+    <App store={store} />
+  </AppContainer>
 ), document.getElementById('react-router'));
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    let NextApp = require('./App').default;
+    render((
+      <AppContainer>
+        <NextApp store={store} />
+      </AppContainer>
+    ), document.getElementById('react-router'));
+  });
+}

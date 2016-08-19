@@ -1,4 +1,3 @@
-var webpack = require('webpack');
 var path = require('path');
 var merge = require('webpack-merge');
 
@@ -11,7 +10,7 @@ var commonConfig = {
   ],
 
   output: {
-		path: path.join(__dirname, '..', 'public', 'assets'),
+    path: path.join(__dirname, '..', 'public', 'assets'),
     filename: 'bundle.js'
   },
 
@@ -20,9 +19,8 @@ var commonConfig = {
       { test: /\.jsx?$/, 
         exclude: /node_modules/, 
         loaders: [
-          'react-hot',
           'babel' + '?' + JSON.stringify({
-            plugins: ['transform-decorators-legacy'],
+            plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
             presets: ['react', 'es2015', 'stage-1']
           })
         ]

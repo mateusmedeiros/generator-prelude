@@ -39,7 +39,7 @@
   },
   "scripts": {
     "heroku-postbuild": "webpack --config config/webpack.js",
-    "setup": "yo prelude:setup",
+    "setup": "npm install --only=dev && yo prelude:setup",
     "start": "nf start -j Procfile.dev"
   }
 }

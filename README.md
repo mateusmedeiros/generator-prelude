@@ -37,6 +37,8 @@ MIT © [Mateus &#34;Doodad&#34; Medeiros](https://github.com/mateusmedeiros)
    * Choose to edit the default .eslintrc.yml
    * Download or link in some way the .rubocop.yml to the one from ecostage/guides
    * Choose to add or not the .rubocop.yml
+   * Configure heroku app/pipeline if heroku binary on PATH
+
 
 [npm-image]: https://badge.fury.io/js/generator-prelude.svg
 [npm-url]: https://npmjs.org/package/generator-prelude

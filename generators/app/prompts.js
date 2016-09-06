@@ -1,3 +1,7 @@
+var ejs = require('ejs');
+var _ = require('lodash');
+var chalk = require('chalk');
+
 module.exports = {
   gems: function() {
     return this.prompt([{
@@ -9,6 +13,21 @@ module.exports = {
           name: 'seedbank',
           checked: true,
           value: "gem 'seedbank'"
+        },
+        {
+          name: 'rack-cors',
+          checked: true,
+          value: "gem 'rack-cors'"
+        },
+        {
+          name: 'redis',
+          checked: true,
+          value: "gem 'redis', '~> 3.0'"
+        },
+        {
+          name: 'bcrypt',
+          checked: true,
+          value: "gem 'bcrypt', '~> 3.1.7'"
         }
       ]
     }]).then(function(answers) {
@@ -17,20 +36,13 @@ module.exports = {
     }.bind(this));
   },
 
-  testGems: function() {
+  cssModules: function() {
     return this.prompt([{
-      type: 'checkbox',
-      name: 'gems',
-      message: 'Do you want any additional gem to be included in the test group of your Gemfile?',
-      choices: [
-        {
-          name: 'factory_girl_rails',
-          checked: true,
-          value: "gem 'factory_girl_rails'"
-        }
-      ]
+      type    : 'confirm',
+      name    : 'enableCssModules',
+      message : 'Would you like to enable css-modules?'
     }]).then(function(answers) {
-      this.testGems = answers.gems;
+      this.enableCssModules = answers.enableCssModules;
       this.log('\n');
     }.bind(this));
   }

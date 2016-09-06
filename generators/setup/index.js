@@ -1,41 +1,22 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var prompts = require('./prompts');
 var _ = require('lodash');
 
 module.exports = yeoman.Base.extend({
   initializing: function() {
-    this.appName = this.fs.readJSON(this.destinationPath('package.json')).name;
+    this.appName = this.fs.readJSON(this.destinationPath('client/package.json')).name;
   },
 
-  prompting: prompts,
-
   writing: function () {
-    if (this.envFile) {
-      this.fs.write(this.destinationPath('.env'), this.envFile);
-    } else {
-      this.fs.copyTpl(
-        this.templatePath('.env'),
-        this.destinationPath('.env'),
-        { appName: _.snakeCase(this.appName) }
-      );
-    }
+    this.fs.copyTpl(
+      this.templatePath('shared/.env'),
+      this.destinationPath('shared/.env'),
+      { appName: _.snakeCase(this.appName) }
+    );
   },
 
   install: function () {
-    this.npmInstall();
-
-    return this.spawnCommand('gem', [ 'install', 'bundler', '--conservative' ])
-      .on('exit', (code) => {
-        if (!code) {
-          this.spawnCommand('ruby', [ this.destinationPath('bin', 'bundle'), 'install' ])
-            .on('exit', (code) => {
-              if (!code) {
-                this.spawnCommand('ruby', [ this.destinationPath('bin', 'rails'), 'db:setup' ]);
-                this.spawnCommand('ruby', [ this.destinationPath('bin', 'rails'), 'log:clear', 'tmp:clear' ]);
-              } 
-            });
-        }
-      });
+    this.npmInstall(null, { cwd: this.destinationPath('client') });
+    this.spawnCommand('ruby', ['bin/setup'], { cwd: this.destinationPath('server') })
   }
 });

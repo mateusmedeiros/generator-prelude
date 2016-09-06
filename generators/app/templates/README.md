@@ -7,7 +7,7 @@ Welcome to the <%= _.startCase(appName) %> project!
 After cloning the project into your workspace, cd into the project's root and run the setup script with npm.
 
 ```bash
-$ npm run setup
+$ node bin/setup.js
 ```
 
 To start the server run `npm start`.

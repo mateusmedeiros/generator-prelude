@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var prompts = require('./prompts');
 var _ = require('lodash');
 var fs = require('fs');
+var glob = require('glob');
 
 module.exports = yeoman.Base.extend({
   constructor: function() {
@@ -37,42 +38,37 @@ module.exports = yeoman.Base.extend({
   setTemplateVars: function() {
     this.templateVars = {
       appName: this.appName,
-
+      enableCssModules: this.enableCssModules,
       gems: _(this.gems).concat(
         "gem 'pg', '~> 0.18'",
-        "gem 'puma'",
-        "gem 'rack-cors'"
+        "gem 'puma', '~> 3.0'"
       ).sortBy().join('\n'),
 
       generatorVersion: this.fs.readJSON(require.resolve('../../package.json')).version,
 
-      test_gems: _(this.testGems).concat(
-        "gem 'byebug', platform: :mri"
-      ).sortBy().join('\n  ')
+      testGems: _(this.testGems).concat(
+        "gem 'byebug', platform: :mri",
+        "gem 'dotenv'"
+      ).sortBy().join('\n  '),
+
+      _: _ //lodash
     };
   },
 
   writing: function () {
-    var from = this.templatePath('.');
-    var to = this.destinationPath('.');
+    var files = glob.sync('**', {
+      cwd: this.sourceRoot(),
+      dot: true
+    });
 
-    this.fs.copyTpl(from, to, _.merge(this.templateVars, { _: _ }));
+    files.forEach(function (file) {
+      this.fs.copyTpl(
+        this.templatePath(file),
+        this.destinationPath(file),
+        this.templateVars
+      );
+    }.bind(this));
 
-    // copyTpl seems to mess with binary files (which is understandable)
-    this.fs.copy(
-      this.templatePath('app/client/assets/foo-asset.png'),
-      this.destinationPath('app/client/assets/foo-asset.png')
-    );
-
-    // See https://github.com/npm/npm/issues/7252 for why this is needed
-    for (let file of fs.readdirSync(this.templatePath())) {
-      if (file.charAt(0) === '_') {
-        this.fs.move(
-          this.destinationPath(file),
-          this.destinationPath(`.${file.substr(1)}`)
-        );
-      }
-    }
     this.config.save();
   },
 
@@ -81,11 +77,11 @@ module.exports = yeoman.Base.extend({
   },
 
   end: function() {
-    this.spawnCommand('git', [ 'init' ])
+    this.spawnCommand('git', ['init'])
       .on('exit', () => {
-        this.spawnCommand('git', [ 'add', '.' ])
+        this.spawnCommand('git', ['add', '.'])
           .on('exit', () => {
-            this.spawnCommand('git', [ 'commit', '-m', 'Initial commit' ]);
+            this.spawnCommand('git', ['commit', '-m', 'Initial commit', '--quiet']);
           });
       });
   }

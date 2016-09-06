@@ -1,0 +1,5 @@
+node_modules
+# This is the directory where webpack puts generated assets and bundles.
+public/assets
+npm-debug.log
+tmp/mocha-webpack

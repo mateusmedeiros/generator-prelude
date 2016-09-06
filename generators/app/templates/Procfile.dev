@@ -1,2 +1,2 @@
-server: node express.js
-client: rails s -p 3000
+server: cd server && rails s -p 3000
+client: cd client && npm start

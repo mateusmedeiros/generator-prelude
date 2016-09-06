@@ -1,1 +1,1 @@
-export default from './<%= _.kebabCase(componentName) %>';
+export default from './<%= _.kebabCase(containerName) %>';

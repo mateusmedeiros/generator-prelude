@@ -1,3 +1,3 @@
-.<%= _.kebabCase(componentName) %> {
+.<%= _.kebabCase(containerName) %> {
 
 }

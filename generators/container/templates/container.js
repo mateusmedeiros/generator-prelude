@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './<%= _.kebabCase(componentName) %>.css';
+import styles from './<%= _.kebabCase(containerName) %>';
 
 function mapStateToProps(state) {
   return {
@@ -13,8 +13,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class <%= containerName %>(props) extends React.Component {
+lass <%= containerName %>(props) extends React.Component {
   render() {
     return (
       <span />
@@ -25,3 +24,7 @@ export default class <%= containerName %>(props) extends React.Component {
 <%= containerName %>.propTypes = {
 
 };
+
+<%= containerName %> = connect(mapStateToProps, mapDispatchToProps)(<%= containerName %>);
+
+export default <%= containerName %>;

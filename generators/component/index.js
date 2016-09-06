@@ -14,10 +14,11 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
+    var componentName = this.componentName;
     var componentDir = "client/app/components/"+_.kebabCase(componentName);
     var templateVars = {
       _,
-      componentName: this.componentName
+      componentName: componentName
     };
 
     this.fs.copyTpl(

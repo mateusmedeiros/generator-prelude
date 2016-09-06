@@ -28,6 +28,7 @@
     "chalk": "^1.0.0",
     "ejs": "^2.5.1",
     "lodash": "^4.15.0",
+    "postcss-loader": "^0.11.1",
     "yeoman-generator": "^0.23.0",
     "yosay": "^1.0.0"
   },
@@ -45,11 +46,6 @@
     "gulp-nsp": "^2.1.0"
   },
   "repository": "mateusmedeiros/generator-prelude",
-  "scripts": {
-    "link": "npm run prepublish && sudo npm link",
-    "prepublish": "cp -R generators generatorsSrc && gulp publish",
-    "postpublish": "rm -Rf generators && mv generatorsSrc generators",
-    "unlink": "npm run postpublish && sudo npm unlink"
-  },
+  "scripts": {},
   "license": "MIT"
 }

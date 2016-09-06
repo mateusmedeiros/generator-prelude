@@ -1,0 +1,8 @@
+#!/bin/bash
+function realpath { echo $(cd $(dirname $1); pwd)/$(basename $1); }
+SCRIPT=`realpath $0`
+ROOT_PATH="$(dirname $SCRIPT)/../"
+
+echo "Starting..."
+cd "$ROOT_PATH/server" && rails server -p 3000
+cd "$ROOT_PATH/client" && npm start

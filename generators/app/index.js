@@ -38,7 +38,7 @@ module.exports = yeoman.Base.extend({
   setTemplateVars: function() {
     this.templateVars = {
       appName: this.appName,
-
+      enableCssModules: this.enableCssModules,
       gems: _(this.gems).concat(
         "gem 'pg', '~> 0.18'",
         "gem 'puma', '~> 3.0'"
@@ -69,22 +69,11 @@ module.exports = yeoman.Base.extend({
       );
     }.bind(this));
 
-    if (this.envFile) {
-      this.fs.write(this.destinationPath('shared/.env'), this.envFile);
-    } else {
-      this.fs.copyTpl(
-        this.templatePath('shared/.env'),
-        this.destinationPath('shared/.env'),
-        this.templateVars
-      );
-    }
-
     this.config.save();
   },
 
   install: function() {
-    this.spawnCommand('chmod', ['+x', 'bin/setup'], { cwd: this.destinationPath() });
-    this.spawnCommand('chmod', ['+x', 'bin/start'], { cwd: this.destinationPath() });
+    this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
   },
 
   end: function() {

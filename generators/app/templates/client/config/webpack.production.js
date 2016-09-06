@@ -12,7 +12,7 @@ module.exports = merge(baseConfig, {
   module: {
     loaders: [
       { test: /\.js(x)?$/, exclude: /node_modules/, loaders: ['babel'] },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract({ loader: 'style-loader!css-loader?modules&camelCase=dashes&localIdentName=[local]---[hash:base64:6]!postcss-loader' }) },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract({ loader: 'style-loader!css-loader?<%- enableCssModules ? 'modules&' : '' %>camelCase=dashes&localIdentName=[local]---[hash:base64:6]!postcss-loader' }) },
     ]
   },
   plugins: [

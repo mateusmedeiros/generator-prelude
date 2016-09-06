@@ -15,7 +15,7 @@ module.exports = merge(baseConfig, {
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap&modules&camelCase=dashes&localIdentName=[local]---[hash:base64:6]!postcss-loader' },
+      { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap&<%- enableCssModules ? 'modules&' : '' %>camelCase=dashes&localIdentName=[local]---[hash:base64:6]!postcss-loader' },
       { test: /\.js(x)?$/, exclude: /node_modules/, loaders: ['babel'] }
     ]
   },

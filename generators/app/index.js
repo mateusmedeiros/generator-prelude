@@ -1,22 +1,27 @@
-'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var prompts = require('./prompts');
-var _ = require('lodash');
-var fs = require('fs');
+import chalk from 'chalk';
+import _ from 'lodash';
+import fs from 'fs';
 
-module.exports = yeoman.Base.extend({
-  constructor: function() {
-    yeoman.Base.apply(this, arguments);
+import gems from './gems';
+import prompts from './prompts';
+
+import Gem from '../../lib/gem';
+import Base from '../../lib/base';
+import GemPrompt from '../../lib/prompts/gem';
+import BooleanConfigPrompt from '../../lib/prompts/boolean-config';
+
+export default class extends Base {
+  constructor(...args) {
+    super(...args);
 
     this.argument('appName', {
       type: String,
       required: true,
       description: 'The name of the application'
     });
-  },
+  }
 
-  initializing: function() {
+  initializing() {
     this.log('\n');
     this.log(chalk.bold.white('          ######                                                     '));
     this.log(chalk.bold.white('          #     # #####  ###### #      #    # #####  ######          '));
@@ -26,43 +31,46 @@ module.exports = yeoman.Base.extend({
     this.log(chalk.bold.white('          #       #   #  #      #      #    # #    # #               '));
     this.log(chalk.bold.white('          #       #    # ###### ######  ####  #####  ######          '));
     this.log('\n');
-  },
+  }
 
-  prompting: prompts,
+  prompting() {
+    let gemPrompt = new GemPrompt({
+      gems,
+      context: this,
+      propertyName: 'gems',
+    });
+    gemPrompt.renderPrompt();
 
-  configuring: function() {
-    this.destinationRoot(_.kebabCase(this.appName));
-  },
+    let cssModulesPrompt = new BooleanConfigPrompt({
+      message: 'Would you like to enable css-modules support \
+                  (https://github.com/css-modules/css-modules for more info)?',
+      context: this,
+      propertyName: 'enableCssModules'
+    });
+    cssModulesPrompt.renderPrompt();
+  }
 
-  setTemplateVars: function() {
-    this.templateVars = {
+  configuring() {
+    this.config.set({
       appName: this.appName,
-
-      gems: _(this.gems).concat(
-        "gem 'pg', '~> 0.18'",
-        "gem 'puma'",
-        "gem 'rack-cors'"
-      ).sortBy().join('\n'),
-
+      cssModules: this.enableCssModules,
+      gems: this.gems.map((g) => g.name),
       generatorVersion: this.fs.readJSON(require.resolve('../../package.json')).version,
+    });
 
-      test_gems: _(this.testGems).concat(
-        "gem 'byebug', platform: :mri"
-      ).sortBy().join('\n  ')
-    };
-  },
+    this.templateVars = _.merge(this.config.getAll(), {
+      gemfileGems: Gem.generateGemDeclarations(this.gems),
+      _ // Includes lodash for simple manipulations in the templates
+    });
 
-  writing: function () {
+    this.destinationRoot(_.kebabCase(this.appName));
+  }
+
+  writing() {
     var from = this.templatePath('.');
     var to = this.destinationPath('.');
 
-    this.fs.copyTpl(from, to, _.merge(this.templateVars, { _: _ }));
-
-    // copyTpl seems to mess with binary files (which is understandable)
-    this.fs.copy(
-      this.templatePath('app/client/assets/foo-asset.png'),
-      this.destinationPath('app/client/assets/foo-asset.png')
-    );
+    this.fs.copyTpl(from, to, this.templateVars);
 
     // See https://github.com/npm/npm/issues/7252 for why this is needed
     for (let file of fs.readdirSync(this.templatePath())) {
@@ -73,20 +81,15 @@ module.exports = yeoman.Base.extend({
         );
       }
     }
-    this.config.save();
-  },
-
-  install: function() {
-    this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
-  },
-
-  end: function() {
-    this.spawnCommand('git', [ 'init' ])
-      .on('exit', () => {
-        this.spawnCommand('git', [ 'add', '.' ])
-          .on('exit', () => {
-            this.spawnCommand('git', [ 'commit', '-m', 'Initial commit' ]);
-          });
-      });
   }
-});
+
+  install() {
+    this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
+  }
+
+  end() {
+    this.spawnWithPromise('git', ['init'])
+      .then(() => this.spawnWithPromise('git', ['add', '.']))
+      .then(() => this.spawnWithPromise('git', ['commit', '-m', 'Initial commit', '--quiet']));
+  }
+}

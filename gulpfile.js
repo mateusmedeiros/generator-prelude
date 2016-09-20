@@ -1,26 +1,40 @@
 'use strict';
-var path = require('path');
-var gulp = require('gulp');
-var filter = require('gulp-filter');
 var babel = require('gulp-babel');
 var eslint = require('gulp-eslint');
 var excludeGitignore = require('gulp-exclude-gitignore');
+var filter = require('gulp-filter');
+var gulp = require('gulp');
 var nsp = require('gulp-nsp');
+var path = require('path');
 
 gulp.task('publish', function() {
-  var f = filter(['generatorsSrc/**/*.js', '!generatorsSrc/**/*/templates/**/*.js'], { restore: true });
+  var templatesFilter = filter([
+    'generatorsSrc/**/*.js',
+    'libSrc/**/*.js',
+    '!generatorsSrc/**/*/templates/**/*.js'
+  ], { restore: true });
 
-  return gulp.src('generatorsSrc/**/*.js')
-    .pipe(f)
-    .pipe(babel({
-      presets: ['es2015', 'stage-1']          
-    }))
-    .pipe(f.restore)
-    .pipe(gulp.dest('generators'));
+  var generatorsFilter = filter([
+    'generatorsSrc/**/*.js'
+  ], { restore: true });
+
+  var libFilter = filter([
+    'libSrc/**/*.js'
+  ]);
+
+  return gulp.src(['generatorsSrc/**/*.js', 'libSrc/**/*.js'])
+    .pipe(templatesFilter)
+    .pipe(babel())
+    .pipe(templatesFilter.restore)
+    .pipe(generatorsFilter)
+    .pipe(gulp.dest('generators'))
+    .pipe(generatorsFilter.restore)
+    .pipe(libFilter)
+    .pipe(gulp.dest('lib'));
 });
 
 gulp.task('eslint', function() {
-  return gulp.src(['**/*.js', '!generators/app/templates/**/*.js'])
+  return gulp.src(['src/**/*.js', '!src/generators/app/templates/**/*.js'])
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())

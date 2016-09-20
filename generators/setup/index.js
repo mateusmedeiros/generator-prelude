@@ -1,41 +1,37 @@
-'use strict';
-var yeoman = require('yeoman-generator');
 var prompts = require('./prompts');
 var _ = require('lodash');
 
-module.exports = yeoman.Base.extend({
-  initializing: function() {
-    this.appName = this.fs.readJSON(this.destinationPath('package.json')).name;
-  },
+import Base from 'lib/base';
 
-  prompting: prompts,
+export default class extends Base {
+  initializing() {
+    this.appName = this.fs.readJSON(this.destinationPath('client/package.json')).name;
+  }
 
-  writing: function () {
+  prompting() {
+    prompts.bind(this)(); // Temporary
+  }
+
+  writing() {
     if (this.envFile) {
-      this.fs.write(this.destinationPath('.env'), this.envFile);
+      this.fs.write(this.destinationPath('shared/.env'), this.envFile);
     } else {
       this.fs.copyTpl(
-        this.templatePath('.env'),
-        this.destinationPath('.env'),
+        this.templatePath('shared/.env'),
+        this.destinationPath('shared/.env'),
         { appName: _.snakeCase(this.appName) }
       );
     }
-  },
+  }
 
-  install: function () {
+  install() {
     this.npmInstall();
 
-    return this.spawnCommand('gem', [ 'install', 'bundler', '--conservative' ])
-      .on('exit', (code) => {
-        if (!code) {
-          this.spawnCommand('ruby', [ this.destinationPath('bin', 'bundle'), 'install' ])
-            .on('exit', (code) => {
-              if (!code) {
-                this.spawnCommand('ruby', [ this.destinationPath('bin', 'rails'), 'db:setup' ]);
-                this.spawnCommand('ruby', [ this.destinationPath('bin', 'rails'), 'log:clear', 'tmp:clear' ]);
-              } 
-            });
-        }
+    this.spawnWithPromise('gem', [ 'install', 'bundler', '--conservative' ])
+      .then(() => this.spawnWithPromise('ruby', [ this.destinationPath('bin', 'bundle'), 'install' ]))
+      .then(() => {
+        this.spawnWithPromise('ruby', [ this.destinationPath('bin', 'rails'), 'db:setup' ]);
+        this.spawnWithPromise('ruby', [ this.destinationPath('bin', 'rails'), 'log:clear', 'tmp:clear' ]);
       });
   }
-});
+}

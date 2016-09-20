@@ -9,8 +9,8 @@
     "url": "https://github.com/mateusmedeiros"
   },
   "files": [
-    "generators/app",
-    "generators/setup"
+    "generators",
+    "lib"
   ],
   "main": "generators/app/index.js",
   "keywords": [
@@ -33,23 +33,29 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-1": "^6.13.0",
+    "babel-register": "^6.14.0",
+    "chai": "^3.5.0",
     "eslint": "^3.1.1",
     "eslint-plugin-react": "^6.0.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
+    "gulp-cached": "^1.1.0",
     "gulp-eslint": "^2.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-filter": "^4.0.0",
-    "gulp-nsp": "^2.1.0"
+    "gulp-nsp": "^2.1.0",
+    "mocha": "^3.0.2"
   },
   "repository": "mateusmedeiros/generator-prelude",
   "scripts": {
     "link": "npm run prepublish && sudo npm link",
-    "prepublish": "cp -R generators generatorsSrc && gulp publish",
-    "postpublish": "rm -Rf generators && mv generatorsSrc generators",
-    "unlink": "npm run postpublish && sudo npm unlink"
+    "prepublish": "cp -R generators generatorsSrc && cp -R lib libSrc && gulp publish",
+    "postpublish": "rm -Rf generators && rm -Rf lib && mv libSrc lib && mv generatorsSrc generators",
+    "unlink": "npm run postpublish && sudo npm unlink",
+    "test": "mocha --compilers js:babel-register --recursive test"
   },
   "license": "MIT"
 }

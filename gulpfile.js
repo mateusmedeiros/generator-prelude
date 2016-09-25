@@ -7,30 +7,20 @@ var gulp = require('gulp');
 var nsp = require('gulp-nsp');
 var path = require('path');
 
-gulp.task('publish', function() {
+gulp.task('compile', function() {
+  var srcFilter = filter([
+    'src/**/*.js',
+    '!src/**/*/templates/**/*.js'
+  ], {restore: true});
   var templatesFilter = filter([
-    'generatorsSrc/**/*.js',
-    'libSrc/**/*.js',
-    '!generatorsSrc/**/*/templates/**/*.js'
-  ], { restore: true });
-
-  var generatorsFilter = filter([
-    'generatorsSrc/**/*.js'
-  ], { restore: true });
-
-  var libFilter = filter([
-    'libSrc/**/*.js'
+    'src/**/*/templates/**/*'
   ]);
 
-  return gulp.src(['generatorsSrc/**/*.js', 'libSrc/**/*.js'])
-    .pipe(templatesFilter)
+  return gulp.src(['src/**/*'])
+    .pipe(srcFilter)
     .pipe(babel())
-    .pipe(templatesFilter.restore)
-    .pipe(generatorsFilter)
-    .pipe(gulp.dest('generators'))
-    .pipe(generatorsFilter.restore)
-    .pipe(libFilter)
-    .pipe(gulp.dest('lib'));
+    .pipe(srcFilter.restore)
+    .pipe(gulp.dest('.'))
 });
 
 gulp.task('eslint', function() {

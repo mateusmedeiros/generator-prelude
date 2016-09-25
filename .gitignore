@@ -1,3 +1,5 @@
 node_modules
-/generators
+npm-debug.log
+
 /lib
+/generators

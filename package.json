@@ -52,9 +52,7 @@
   "repository": "mateusmedeiros/generator-prelude",
   "scripts": {
     "link": "npm run prepublish && sudo npm link",
-    "prepublish": "cp -R generators generatorsSrc && cp -R lib libSrc && gulp publish",
-    "postpublish": "rm -Rf generators && rm -Rf lib && mv libSrc lib && mv generatorsSrc generators",
-    "unlink": "npm run postpublish && sudo npm unlink",
+    "prepublish": "gulp compile",
     "test": "mocha --compilers js:babel-register --recursive test"
   },
   "license": "MIT"

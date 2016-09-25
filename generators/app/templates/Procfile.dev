@@ -1,2 +1,0 @@
-server: node express.js
-client: rails s -p 3000

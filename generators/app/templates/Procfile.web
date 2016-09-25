@@ -1,2 +1,0 @@
-express: node express.js
-puma: bundle exec puma -C config/puma.rb

@@ -2,6 +2,9 @@
 /log
 /node_modules
 /tmp
+npm-debug.log
+tmp/mocha-webpack
+.tmp
 
 .byebug_history
 

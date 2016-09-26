@@ -18,9 +18,9 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _gems = require('./gems');
+var _gems2 = require('./gems');
 
-var _gems2 = _interopRequireDefault(_gems);
+var _gems3 = _interopRequireDefault(_gems2);
 
 var _prompts = require('./prompts');
 
@@ -86,29 +86,11 @@ var _class = function (_Base) {
       this.log('\n');
     }
   }, {
-    key: 'prompting',
-    value: function prompting() {
-      var gemPrompt = new _gem4.default({
-        gems: _gems2.default,
-        context: this,
-        propertyName: 'gems'
-      });
-      gemPrompt.renderPrompt();
-
-      var cssModulesPrompt = new _booleanConfig2.default({
-        message: 'Would you like to enable css-modules support \
-                  (https://github.com/css-modules/css-modules for more info)?',
-        context: this,
-        propertyName: 'enableCssModules'
-      });
-      cssModulesPrompt.renderPrompt();
-    }
-  }, {
     key: 'configuring',
     value: function configuring() {
       this.config.set({
         appName: this.appName,
-        cssModules: this.enableCssModules,
+        enableCssModules: this.enableCssModules,
         gems: this.gems.map(function (g) {
           return g.name;
         }),
@@ -161,7 +143,7 @@ var _class = function (_Base) {
   }, {
     key: 'install',
     value: function install() {
-      this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
+      // TODO: this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
     }
   }, {
     key: 'end',
@@ -173,6 +155,29 @@ var _class = function (_Base) {
       }).then(function () {
         return _this2.spawnWithPromise('git', ['commit', '-m', 'Initial commit', '--quiet']);
       });
+    }
+  }, {
+    key: 'prompting',
+    get: function get() {
+      return {
+        gems: function gems() {
+          var gemPrompt = new _gem4.default({
+            gems: _gems3.default,
+            context: this,
+            propertyName: 'gems'
+          });
+          return gemPrompt.renderPrompt();
+        },
+        cssModules: function cssModules() {
+          var cssModulesPrompt = new _booleanConfig2.default({
+            message: 'Would you like to enable css-modules support \
+                      (https://github.com/css-modules/css-modules for more info)?',
+            context: this,
+            propertyName: 'enableCssModules'
+          });
+          return cssModulesPrompt.renderPrompt();
+        }
+      };
     }
   }]);
 

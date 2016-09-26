@@ -40,7 +40,8 @@
     "postcss": "^5.1.2",
     "postcss-cssnext": "^2.7.0",
     "postcss-reporter": "^1.4.1",
-    "postcss-loader": "^0.11.1"
+    "postcss-loader": "^0.11.1",
+    "compression-webpack-plugin": "^0.3.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -56,9 +57,9 @@
     "yo": "^1.8.4"
   },
   "scripts": {
-    "heroku-postbuild": "webpack --config config/production.js",
-    "start": "node server.js",
-    "test": "mocha-webpack --webpack-config ./config/client/webpack.test.js 'test/**/*.js'",
+    "heroku-postbuild": "webpack --config config/client/production.js",
+    "start": "node devserver.js",
+    "test": "mocha-webpack --webpack-config config/client/webpack.test.js 'test/**/*.js'",
     "test:watch": "npm test -- --watch"
   }
 }

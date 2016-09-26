@@ -33,27 +33,33 @@ export default class extends Base {
     this.log('\n');
   }
 
-  prompting() {
-    let gemPrompt = new GemPrompt({
-      gems,
-      context: this,
-      propertyName: 'gems',
-    });
-    gemPrompt.renderPrompt();
+  get prompting() {
+    return {
+      gems() {
+        const gemPrompt = new GemPrompt({
+          gems,
+          context: this,
+          propertyName: 'gems',
+        });
+        return gemPrompt.renderPrompt();
+      },
 
-    let cssModulesPrompt = new BooleanConfigPrompt({
-      message: 'Would you like to enable css-modules support \
-                  (https://github.com/css-modules/css-modules for more info)?',
-      context: this,
-      propertyName: 'enableCssModules'
-    });
-    cssModulesPrompt.renderPrompt();
+      cssModules() {
+        const cssModulesPrompt = new BooleanConfigPrompt({
+          message: 'Would you like to enable css-modules support \
+                      (https://github.com/css-modules/css-modules for more info)?',
+          context: this,
+          propertyName: 'enableCssModules'
+        });
+        return cssModulesPrompt.renderPrompt();
+      }
+    };
   }
 
   configuring() {
     this.config.set({
       appName: this.appName,
-      cssModules: this.enableCssModules,
+      enableCssModules: this.enableCssModules,
       gems: this.gems.map((g) => g.name),
       generatorVersion: this.fs.readJSON(require.resolve('../../package.json')).version,
     });
@@ -84,7 +90,7 @@ export default class extends Base {
   }
 
   install() {
-    this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
+    // TODO: this.composeWith('prelude:setup', {}, { local: require.resolve('../setup') });
   }
 
   end() {

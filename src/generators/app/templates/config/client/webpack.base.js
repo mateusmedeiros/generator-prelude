@@ -46,11 +46,6 @@ module.exports = {
     ];
   },
   plugins: [
-    plugins: [
-      new HtmlWebpackPlugin({
-        title: '<%= _.chain(appName).camelCase().upperFirst().value() %>'
-      })
-    ],
     new webpack.DefinePlugin({
       '__BUILD_VERSION__': JSON.stringify(uuid.v4()),
       'process.env': {

@@ -26,8 +26,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Disable serving files in public since express.js take care of that for us.
-  config.public_file_server.enabled = false
+  config.public_file_server.enabled = true
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

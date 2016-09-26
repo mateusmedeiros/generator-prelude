@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title><%= _.chain(appName).camelCase().upperFirst().value() %></title>
+</head>
+<body>
+   <div id="root">
+   </div>
+   <%% if Rails.env.production? %>
+      <script src="/assets/bundle.js"></script>
+      <link rel="stylesheet" href="/assets/bundle.css">
+   <%% else %>
+      <script src="http://localhost:8080/assets/bundle.js"></script>
+   <%% end %>
+</body>
+</html>

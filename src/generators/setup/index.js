@@ -1,11 +1,11 @@
 var prompts = require('./prompts');
 var _ = require('lodash');
 
-import Base from 'lib/base';
+import Base from '../../lib/base';
 
 export default class extends Base {
   initializing() {
-    this.appName = this.fs.readJSON(this.destinationPath('client/package.json')).name;
+    this.appName = this.fs.readJSON(this.destinationPath('package.json')).name;
   }
 
   prompting() {
@@ -14,11 +14,11 @@ export default class extends Base {
 
   writing() {
     if (this.envFile) {
-      this.fs.write(this.destinationPath('shared/.env'), this.envFile);
+      this.fs.write(this.destinationPath('.env'), this.envFile);
     } else {
       this.fs.copyTpl(
-        this.templatePath('shared/.env'),
-        this.destinationPath('shared/.env'),
+        this.templatePath('.env'),
+        this.destinationPath('.env'),
         { appName: _.snakeCase(this.appName) }
       );
     }

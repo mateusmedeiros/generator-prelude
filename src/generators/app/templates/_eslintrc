@@ -1,13 +1,13 @@
 {
-	"env": {
-		"browser": true,
-		"node": true,
-		"es6": true
-	},
-	"extends": [
-		"eslint:recommended",
-		"plugin:react/recommended"
-	],
+  "env": {
+  	"browser": true,
+  	"node": true,
+  	"es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
 	"parser": "babel-eslint",
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -20,7 +20,7 @@
 		"react": {
 			"pragma": "React"
 		}
-	}
+	},
 	"plugins": [
 		"react",
     "immutable"
@@ -28,12 +28,12 @@
 	"rules": {
 		"immutable/no-let": 2,
 		"immutable/no-this": 2,
-		"immutable/no-mutation": 2
+		"immutable/no-mutation": 2,
 		"indent": ["error", 2, { "SwitchCase": 1 }],
-		"linebreak-style": ["unix"],
-		"jsx-quotes": ["prefer-double"],
-		"quotes": ["single"],
-		"semi": ["always"],
+		"linebreak-style": ["error", "unix"],
+		"jsx-quotes": ["error", "prefer-double"],
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"],
 		"react/prop-types": 1
 	}
 }

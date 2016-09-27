@@ -13,20 +13,9 @@ This generator generates an SPA backed by Rails and served with Express.
 #### Rails 5
  * The application uses Rails 5 on API-only mode
  * Running on port 3000
+ * Renders the client app
 
-#### Express
- * The generated project will include a very small express server.
- * In production it will
-   - Run in the port specified in the `PORT` env var
-   - Proxy all traffic under the `/api` path to the Rails server
-   - Serve everything under the `public` directory
- * In development it will
-   - Run in the port 8080
-   - Proxy all traffic under the `/api` path to the Rails server
-   - Serve an empty css file in the path `/assets/bundle.css`
-   - Spin up an instance of `webpack-dev-server` in the port 8081
-   - Proxy all traffic under the `/assets` path to the `webpack-dev-server`
-     instance
+#### WebpackDevServer
 
 Note: The reason it serves an empty css file in development is because all css
 is loaded with style-loader (in development).
@@ -35,18 +24,15 @@ is loaded with style-loader (in development).
  * The generated project will be pre-configured with a nice webpack
    configuration that includes:
    - Babel transpiling with stage1, es2015 and react presets
-   - CSS and SCSS loading with `style-loader` in development and the excelent
+   - CSS loading with `style-loader` in development and the excelent
      `ExtractTextWebpackPlugin` in production
-   - Seamless assets in both JS and CSS. Just drop any file in
-     `app/client/assets` and any requires will return the correct url in both
-     production and development environments
    - css-loader to translate `@import` and `url()` calls to requires on css files
  * Config files are separated in:
    - `config/webpack.js` -> The main config file. It will seamlessly load
      environment specific configs based on `NODE_ENV` var
    - `config/webpack/development.js` -> Development specific options
    - `config/webpack/production.js` -> Production specific options
- 
+
 #### Hot Module Replacement
 
 This is also part of the Webpack configuration.
@@ -101,7 +87,7 @@ export { en, pt_BR };
 
 The reason it wasn't made in a way that could **just work** is that javascript's
 new import statements are made to be static. If you want to
-make it more automatic, you can use something like 
+make it more automatic, you can use something like
 [glob-loader](https://github.com/seanchas116/glob-loader) with a normal require.
 
 

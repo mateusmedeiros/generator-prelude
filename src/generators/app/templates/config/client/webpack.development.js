@@ -1,4 +1,3 @@
-require('./env');
 var path = require('path');
 var webpack = require('webpack');
 var baseConfig = require('./webpack.base');

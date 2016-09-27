@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var rootPath = path.resolve(__dirname, '../../');
 var srcPath = path.resolve(__dirname, '../../client');
 var destPath = path.resolve(__dirname, '../../public/assets');
 var nodeModulesPath = path.resolve(__dirname, '../../node_modules');
@@ -50,7 +51,6 @@ module.exports = {
       '__BUILD_VERSION__': JSON.stringify(uuid.v4()),
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-        'API_URL': JSON.stringify(process.env.API_URL)
       }
     })
   ]

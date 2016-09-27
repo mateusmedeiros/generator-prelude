@@ -9,7 +9,7 @@ import App from 'app';
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
-render(
+render((
   <AppContainer>
     <App store={store} history={history} />
   </AppContainer>

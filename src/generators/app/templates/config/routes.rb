@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   end
 
-  match '*path' => 'client#index'
+  get '*path' => 'client#index'
+  root to: 'client#index'
 end

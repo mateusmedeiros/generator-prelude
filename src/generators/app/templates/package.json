@@ -18,7 +18,6 @@
     "flat": "^2.0.1",
     "json-loader": "^0.5.4",
     "lodash": "^4.15.0",
-    "node-sass": "^3.8.0",
     "proxy-middleware": "^0.15.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
@@ -41,12 +40,14 @@
     "postcss-cssnext": "^2.7.0",
     "postcss-reporter": "^1.4.1",
     "postcss-loader": "^0.11.1",
+    "postcss-import": "^8.1.2",
     "compression-webpack-plugin": "^0.3.1"
   },
   "devDependencies": {
+    "eslint": "^3.6.1",
+    "eslint-plugin-immutable": "1.0.0",
     "chai": "^3.5.0",
     "enzyme": "^2.4.1",
-    "foreman": "^1.4.1",
     "generator-prelude": "0.1.4",
     "mocha": "^3.0.2",
     "mocha-webpack": "^0.6.0",

@@ -10,7 +10,7 @@ module.exports = merge(baseConfig, {
   ],
   output: {
     pathinfo: true,
-    publicPath: '/assets/'
+    publicPath: 'http://localhost:8080/assets/'
   },
   module: {
     loaders: [

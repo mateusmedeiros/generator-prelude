@@ -7,7 +7,7 @@ var devServer = new WebpackDevServer(webpack(webpackConfig), {
   contentBase: path.join(__dirname, 'public/assets'),
   historyApiFallback: true,
   hot: true,
-  publicPath: '/assets/',
+  publicPath: 'http://localhost:8080/assets/',
   progress: true,
   stats: {
     color: true,

@@ -6,11 +6,6 @@
 <body>
    <div id="root">
    </div>
-   <%% if Rails.env.production? %>
-      <script src="/assets/bundle.js"></script>
-      <link rel="stylesheet" href="/assets/bundle.css">
-   <%% else %>
-      <script src="http://localhost:8080/assets/bundle.js"></script>
-   <%% end %>
+   <%%= include_assets_tags %>
 </body>
 </html>

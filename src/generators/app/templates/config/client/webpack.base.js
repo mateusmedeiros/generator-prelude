@@ -27,7 +27,7 @@ module.exports = {
       { test: /\.(png|jpg|svg)$/, loader: 'url-loader?limit=10000&name=images/[hash].[ext]' },
       { test: /\.json$/, loader: 'json' },
       { test: /\.yml$/, loaders: ['json', 'yaml'] },
-      { test: /\.(ttf|woff|woff2|otf|eot)$/, loader: 'file-loader?name=fonts/[name].[ext]' },
+      { test: /\.(ttf|woff|woff2|otf|eot)$/, loader: 'file-loader?name=fonts/[hash].[ext]' },
       { test: /\.md$/, loader: 'raw-loader' },
     ]
   },

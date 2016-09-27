@@ -3,7 +3,6 @@ import _ from 'lodash';
 import fs from 'fs';
 
 import gems from './gems';
-import prompts from './prompts';
 
 import Gem from '../../lib/gem';
 import Base from '../../lib/base';

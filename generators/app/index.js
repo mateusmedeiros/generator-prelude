@@ -22,10 +22,6 @@ var _gems2 = require('./gems');
 
 var _gems3 = _interopRequireDefault(_gems2);
 
-var _prompts = require('./prompts');
-
-var _prompts2 = _interopRequireDefault(_prompts);
-
 var _gem = require('../../lib/gem');
 
 var _gem2 = _interopRequireDefault(_gem);

@@ -41,7 +41,8 @@
     "postcss-reporter": "^1.4.1",
     "postcss-loader": "^0.11.1",
     "postcss-import": "^8.1.2",
-    "compression-webpack-plugin": "^0.3.1"
+    "compression-webpack-plugin": "^0.3.1",
+    "assets-webpack-plugin": "^3.4.0"
   },
   "devDependencies": {
     "eslint": "^3.6.1",

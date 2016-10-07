@@ -1,9 +1,12 @@
 # generator-prelude [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
 Prelude is an yeoman generator that generates a Rails 5 API-only application with React, Redux, React Redux, React Router, SASS and some other stuff all tied nicely by webpack for a webpack + babel all-the-way workflow and a small express server/app to serve an index.html file.
 
-## NOTE
+# NOTE
 
-This is currently in a somewhat alpha stage. There are a lot of loose ends (as you can see in the TO-DO list) and errors may occur.
+This is currently in a somewhat alpha stage. There are a lot of loose ends (as you can see in the TO-DO list) and ~~errors may occur.~~ Scrap that, errors **will** occur.
+
+I'm out of time until about the end of the month, but I am already aware of several errors and lack of documentation. I will tackle these problems one by one soon, but right now my job keeps me busy. :frowning_face:
+
 
 ## Features
 (This section will be revamped soon, for now I will just dump the info)

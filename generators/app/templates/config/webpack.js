@@ -31,21 +31,22 @@ var commonConfig = {
       { test: /\.(?:png|jpg|gif|svg|ttf|eot|woff|otf|woff2)$/,
         loaders: [
           'url' + '?' + JSON.stringify({
-            limit: 20000
+            limit: 20000,
+            name: '[name].[hash].[ext]'
           })
-        ] 
+        ]
       }
-    ] 
+    ]
   },
 
   resolve: {
     extensions: [ '', '.js', '.jsx', '.css', '.scss' ],
     modulesDirectories: [
-      'app/client/js',
-      'app/client/css',
-      'app/client/assets',
+      'node_modules',
       'config',
-      'node_modules'
+      'js',
+      'css',
+      'assets'
     ]
   }
 };

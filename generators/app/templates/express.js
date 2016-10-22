@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   var webpackConfig = require('./config/webpack');
 
   var devServer = new WebpackDevServer(webpack(webpackConfig), {
-    contentBase: path.join(__dirname, 'assets'),
+    contentBase: path.join(__dirname, 'public', 'assets'),
     hot: true,
     publicPath: 'http://localhost:8081/',
     stats: {
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   mainServer.use('/assets', proxy(url.parse('http://localhost:8081')));
 
-	devServer.listen(8081);
+  devServer.listen(8081);
 }
 
 mainServer.use('/', serveStatic(path.join(__dirname, 'public')));

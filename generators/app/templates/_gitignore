@@ -9,3 +9,4 @@
 /public/assets
 
 .env
+*.DS_Store

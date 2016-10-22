@@ -6,7 +6,7 @@ export default function() {
   let store = createStore(
     combineReducers(reducers),
     {},
-    window.devToolsExtension ? window.devToolsExtension() : undefined
+    window.devToolsExtension ? window.devToolsExtension() : x => x
   );
 
   if (module.hot) {

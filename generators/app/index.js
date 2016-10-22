@@ -60,8 +60,8 @@ module.exports = yeoman.Base.extend({
 
     // copyTpl seems to mess with binary files (which is understandable)
     this.fs.copy(
-      this.templatePath('app/client/assets/foo-asset.png'),
-      this.destinationPath('app/client/assets/foo-asset.png')
+      this.templatePath('app/client/assets/foo-asset.jpg'),
+      this.destinationPath('app/client/assets/foo-asset.jpg')
     );
 
     // See https://github.com/npm/npm/issues/7252 for why this is needed

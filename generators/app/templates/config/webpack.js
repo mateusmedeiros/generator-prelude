@@ -28,7 +28,7 @@ var commonConfig = {
 
       { test: /\.yml$/, loaders: ['json', 'yaml'] },
 
-      { test: /\.(?:png|jpg|gif|ttf|eot|woff|otf|woff2)$/,
+      { test: /\.(?:png|jpg|gif|svg|ttf|eot|woff|otf|woff2)$/,
         loaders: [
           'url' + '?' + JSON.stringify({
             limit: 20000

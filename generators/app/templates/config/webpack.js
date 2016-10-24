@@ -6,7 +6,7 @@ var commonConfig = {
     'whatwg-fetch',
     'babel-polyfill',
     path.join(__dirname, '..', 'app', 'client', 'js', 'index.js'),
-    path.join(__dirname, '..', 'app', 'client', 'css', 'index.css')
+    path.join(__dirname, '..', 'app', 'client', 'css', 'index.scss')
   ],
 
   output: {
@@ -16,8 +16,8 @@ var commonConfig = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, 
-        exclude: /node_modules/, 
+      { test: /\.jsx?$/,
+        exclude: /node_modules/,
         loaders: [
           'babel' + '?' + JSON.stringify({
             plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
@@ -28,24 +28,25 @@ var commonConfig = {
 
       { test: /\.yml$/, loaders: ['json', 'yaml'] },
 
-      { test: /\.(?:png|jpg|gif|ttf|eot|woff|otf|woff2)$/,
+      { test: /\.(?:png|jpg|gif|svg|ttf|eot|woff|otf|woff2)$/,
         loaders: [
           'url' + '?' + JSON.stringify({
-            limit: 20000
+            limit: 20000,
+            name: '[name].[hash].[ext]'
           })
-        ] 
+        ]
       }
-    ] 
+    ]
   },
 
   resolve: {
-    extensions: [ '', '.js', '.jsx' ],
+    extensions: [ '', '.js', '.jsx', '.css', '.scss' ],
     modulesDirectories: [
-      'app/client/js',
-      'app/client/css',
-      'app/client/assets',
+      'node_modules',
       'config',
-      'node_modules'
+      'js',
+      'css',
+      'assets'
     ]
   }
 };

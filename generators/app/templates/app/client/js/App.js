@@ -1,8 +1,8 @@
 import React from 'react';
-import { Router, useRouterHistory } from 'react-router';
+import { Router, Route, useRouterHistory } from 'react-router';
 import { createHistory } from 'history';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
+import Root from './Root';
 
 const browserHistory = useRouterHistory(createHistory)({
   basename: '/app'
@@ -13,7 +13,7 @@ export default class App extends React.Component {
     return (
       <Provider store={this.props.store}>
         <Router history={browserHistory}>
-          <Route path="/" />
+          <Route path="/" component={Root}/>
         </Router>
       </Provider>
     );

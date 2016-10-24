@@ -9,6 +9,10 @@ module.exports = {
     ]
   },
 
+  output: {
+    publicPath: '/assets/'
+  },
+
   plugins: [
     new ExtractTextPlugin('bundle.css')
   ]

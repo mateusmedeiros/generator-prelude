@@ -5,11 +5,13 @@ Prelude is an yeoman generator that generates a Rails 5 API-only application wit
 
 This is currently in a somewhat alpha stage. There are a lot of loose ends (as you can see in the TO-DO list) and ~~errors may occur.~~ Scrap that, errors **will** occur.
 
-I'm out of time until about the end of the month, but I am already aware of several errors and lack of documentation. I will tackle these problems one by one soon, but right now my job keeps me busy. :frowning_face:
+Update: [This commit](https://github.com/mateusmedeiros/generator-prelude/commit/6d9ce6069ca08354cc50175dca8f0f5748acee14) probably made things more stable.
+
+I've been reworking some of the internal stuff here that will check some of those checkboxes on [TO-DO](#to-do) and pave the way for the rest. Documentation is still lacking, but if you made your way into this and you don't want to use the generator directly because of that (or something else), feel free to take a look at the code and steal bits and pieces, everything is MIT. :grin:
 
 
 ## Features
-(This section will be revamped soon, for now I will just dump the info)
+(This section will be revamped eventually, for now I will just dump the info)
 
 This generator generates an SPA backed by Rails and served with Express.
 
